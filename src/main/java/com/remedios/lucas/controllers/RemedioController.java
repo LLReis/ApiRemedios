@@ -1,9 +1,6 @@
 package com.remedios.lucas.controllers;
 
-import com.remedios.lucas.remedio.DadosCadastroRemedio;
-import com.remedios.lucas.remedio.DadosListagemRemedio;
-import com.remedios.lucas.remedio.Remedio;
-import com.remedios.lucas.remedio.RemedioRepository;
+import com.remedios.lucas.remedio.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +23,12 @@ public class RemedioController {
     @GetMapping
     public List<DadosListagemRemedio> listar (){
         return repository.findAll().stream().map(DadosListagemRemedio::new).toList();
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
+        var remedio = repository.getReferenceById(dados.id());
+        remedio.atualizarInformacoes(dados);
     }
 }

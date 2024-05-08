@@ -34,4 +34,13 @@ public class Remedio {
     private LocalDate validade;
     @Enumerated(EnumType.STRING)
     private Laboratorio laboratorio;
+
+    public void atualizarInformacoes(DadosAtualizarRemedio dados) {
+        if(dados.nome() != null)
+            this.nome = dados.nome();
+        if(dados.via() != null)
+            this.via = dados.via();
+        if(dados.laboratorio() != null)
+            this.laboratorio = dados.laboratorio();
+    }
 }
