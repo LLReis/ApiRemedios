@@ -21,6 +21,7 @@ public class Remedio {
         this.quantidade = dados.quantidade();
         this.validade = dados.validade();
         this.laboratorio = dados.laboratorio();
+        this.ativo = true;
     }
 
     @Id
@@ -34,6 +35,7 @@ public class Remedio {
     private LocalDate validade;
     @Enumerated(EnumType.STRING)
     private Laboratorio laboratorio;
+    private  boolean ativo;
 
     public void atualizarInformacoes(DadosAtualizarRemedio dados) {
         if(dados.nome() != null)
@@ -42,5 +44,13 @@ public class Remedio {
             this.via = dados.via();
         if(dados.laboratorio() != null)
             this.laboratorio = dados.laboratorio();
+    }
+
+    public void inativar() {
+        this.ativo = false;
+    }
+
+    public void ativar() {
+        this.ativo = true;
     }
 }
